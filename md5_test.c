@@ -47,6 +47,10 @@ int md5_test()
 	md5_update(&ctx, text3_1, strlen(text3_1));
 	md5_update(&ctx, text3_2, strlen(text3_2));
 	md5_final(&ctx, buf);
+
+	//https://github.com/B-Con/crypto-algorithms/issues/34
+	memset(&ctx, 0, sizeof(&ctx));
+	
 	pass = pass && !memcmp(hash3, buf, MD5_BLOCK_SIZE);
 
 	return(pass);
